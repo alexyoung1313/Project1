@@ -1,0 +1,72 @@
+<project>
+
+	<property name="source.dir" location="src"/>
+	<property name="test.dir" location="tst"/>
+	<property name="build.dir" location="bin"/>
+	<property name="lib.dir" location="lib"/>
+	<property name="jar.dir" location="dist"/>
+	<property name="doc.dir" location="doc"/>
+	
+    <target name="clean" description="remove files created in build">
+        <delete dir="${build.dir}"/>
+    	<delete dir="${doc.dir}"/>
+        <delete dir="${jar.dir}"/>
+    </target>
+	
+   <target name="init" description="create working directories">
+        <mkdir dir="${build.dir}"/>
+   		<mkdir dir="${build.dir}/tst"/>
+   		<mkdir dir="${build.dir}/src"/>
+		<mkdir dir="${doc.dir}"/>
+		<mkdir dir="${jar.dir}"/>   	
+    </target>
+	
+
+    <target name="compile" depends="init" description="will compile java files in working dirs">
+        <javac srcdir="${source.dir}" destdir="${build.dir}/src" includeantruntime="true"/>
+    </target>
+
+
+    <target name="dist" depends="compile">
+        <mkdir dir="build/dist"/>
+        <jar destfile="${jar.dir}/SearchMap.jar" basedir="${build.dir}/src">
+            <manifest>
+                <attribute name="Main-Class" value="cs310.alexangy.project1.SearchMap"/>
+            </manifest>
+        </jar>
+    </target>
+	
+    <target name="run" depends="testRun, doc, dist" description="runs program">
+        <java classname="cs310.alexangy.project1.SearchMap">
+        	<classpath>
+        		<path refid="classpath"/>
+        	</classpath>
+        	<arg value="inputfile.txt"/>
+        	<arg value="outputfile.txt"/>
+        </java>
+    </target>
+
+    <target name="testCompile" depends="compile" description="compiles the JUnit test classes">
+        <javac srcdir="${test.dir}" destdir="${build.dir}/tst" includeantruntime="true">
+        	<classpath refid="classpath"/>
+        </javac>
+    </target>
+		
+	<target name="testRun" depends="testCompile">
+		<junit printsummary="on" fork="true" haltonfailure="yes">
+        	<classpath>
+        		<path refid="classpath"/>
+        	</classpath>
+        	<formatter type="failure" usefile="false" />
+        	<batchtest>
+        		<fileset dir = "${test.dir}" includes="**/*.java" />
+        	</batchtest>
+        </junit>
+    </target>
+	
+	<target name="doc">
+	    <javadoc sourcepath="${source.dir}"  destdir="${doc.dir}"/>
+	</target>
+	
+
+</project>
