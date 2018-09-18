@@ -22,8 +22,7 @@ public class SearchMap
 			fr = new FileReader("inputfile.txt");
 		} catch (FileNotFoundException e1)
 		{
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("File not found");
 		}
 		BufferedReader br = new BufferedReader(fr);
 		Map <Character, Vector<Flight> > flights = new HashMap<Character, Vector<Flight> >();
@@ -54,9 +53,12 @@ public class SearchMap
 				}
 				line = br.readLine();
 			}
+			
+			br.close();
 		} 
 		catch (IOException e)
 		{
+			System.out.println("Error reading file. Incorrect format.");
 			e.printStackTrace();
 		}	
 		FlightMap fmap = new FlightMap(origin, flights);
@@ -88,13 +90,12 @@ public class SearchMap
 				writer.write(writeLine);
 				writer.flush();
 			}
+			
+			writer.close();
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 		
-		
-		
-		//close the files
 	}
 }

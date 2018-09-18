@@ -20,6 +20,11 @@ public class FlightMap
 		reached = new HashSet<Character>();
 	}
 	
+	/**
+	 * helper function for dfs that can be called on an instance of the class FLightMap.
+	 * Creates variable for use in dfs.
+	 * @return a vector of destinations, paths, and prices all in String format
+	 */
 	public Vector<Vector<String> > findPaths()
 	{
 		String path = origin + "";
@@ -29,6 +34,14 @@ public class FlightMap
 		return destinations;	
 	}
 	
+	/**
+	 * Will implement a depth first search on all flight from the origin
+	 * and will record all destinations reach, the path to get there, and
+	 * the price to get there.
+	 * @param c the current city dfs is looking at
+	 * @param path the path from the origin to the current city
+	 * @param pathCost the cost from the origin to the current city
+	 */
 	private void dfs(char c, String path, int pathCost)
 	{
 		if(!flights.containsKey(c))
