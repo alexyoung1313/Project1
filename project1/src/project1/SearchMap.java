@@ -12,8 +12,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+/**
+ * Class SearchMap will read in data from a file named "inputfile.txt" and construct
+ * a map of char--Vector<Flights> with all the destinations from the data. It will then
+ * create and instance of the FlightMap class and call the findPaths method. Search map
+ * will then output the results of this method to an output file named "outputfile.txt"
+ * @author alexyoung
+ *
+ */
 public class SearchMap 
 {
+	
+	
 	public static void main (String[] args)
 	{
 		FileReader fr = null;
@@ -28,6 +38,7 @@ public class SearchMap
 		Map <Character, Vector<Flight> > flights = new HashMap<Character, Vector<Flight> >();
 		String line;
 		char origin = '1';
+		//read in from file
 		try
 		{
 			line = br.readLine();
@@ -61,9 +72,13 @@ public class SearchMap
 			System.out.println("Error reading file. Incorrect format.");
 			e.printStackTrace();
 		}	
+		
+		//find destinations
 		FlightMap fmap = new FlightMap(origin, flights);
 		Vector<Vector<String> > results = fmap.findPaths();
 		
+		
+		//output to file
 		FileOutputStream fos;
 		try
 		{

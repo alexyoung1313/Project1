@@ -5,6 +5,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+/**
+ * Flight map will store the data of the flights, their destinations, and price
+ * and then conduct a depth-first search to find all possible destinations,
+ * the path to them and the price of that path.
+ * @author alexyoung
+ *
+ */
 public class FlightMap 
 {
 	private Map <Character, Vector<Flight> > flights;
