@@ -14,7 +14,7 @@ import java.util.Vector;
 
 /**
  * Class SearchMap will read in data from a file named "inputfile.txt" and construct
- * a map of char--Vector<Flights> with all the destinations from the data. It will then
+ * a map of char to Vector of Flights with all the destinations from the data. It will then
  * create and instance of the FlightMap class and call the findPaths method. Search map
  * will then output the results of this method to an output file named "outputfile.txt"
  * @author alexyoung
@@ -23,7 +23,11 @@ import java.util.Vector;
 public class SearchMap 
 {
 	
-	
+	/**
+	 * main function that will parse the input file, create the flightMap object, and
+	 * write the results to the output file
+	 * @param args needed for main function to be recognized
+	 */
 	public static void main (String[] args)
 	{
 		FileReader fr = null;

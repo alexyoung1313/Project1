@@ -19,6 +19,11 @@ public class FlightMap
 	Vector<Vector<String> > destinations;
 	Set<Character> reached;
 	
+	/**
+	 * Contructor for the FlightMap class with a origin and flights variable
+	 * @param originArg char representing origin
+	 * @param flightsArg Map of all flights
+	 */
 	public FlightMap(char originArg, Map <Character, Vector<Flight> > flightsArg)
 	{
 		this.origin = originArg;
